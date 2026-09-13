@@ -5,6 +5,7 @@ Tile identities, counts, and serialization.
 ## Purpose
 
 This package defines:
+
 - Tile types and identities
 - Tile counts and availability
 - Canonical JSON serialization format
@@ -19,4 +20,3 @@ This package defines:
 ## Status
 
 🚧 Package scaffolded - implementation in issue #3
-

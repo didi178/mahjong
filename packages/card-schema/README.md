@@ -5,6 +5,7 @@ Schema and validation for practice cards.
 ## Purpose
 
 This package defines:
+
 - Card structure and format (YAML/JSON schema)
 - Validation rules for card definitions
 - Type exports for card AST
@@ -18,4 +19,3 @@ This package defines:
 ## Status
 
 🚧 Package scaffolded - implementation in issue #3
-

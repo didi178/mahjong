@@ -7,6 +7,7 @@ Game state reducer and rules enforcement.
 Pure reducer: `(state, event) → (state', facts[])`
 
 Handles:
+
 - Turn sequence
 - Charleston (tile passing)
 - Calls (Pung, Kong, Chow)
@@ -22,4 +23,3 @@ Handles:
 ## Status
 
 🚧 Package scaffolded - future implementation
-

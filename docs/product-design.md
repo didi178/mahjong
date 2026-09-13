@@ -114,11 +114,11 @@ One human and three bots play a complete American Mahjong game, including Charle
 
 Coach level is selected before a game:
 
-| Level | Information shown |
-| --- | --- |
-| Off | Legal moves and rules errors only |
-| Check | Player acts first, then may compare the move with the evaluator |
-| Hint | Primary direction, alternative direction, and weak tiles |
+| Level  | Information shown                                                 |
+| ------ | ----------------------------------------------------------------- |
+| Off    | Legal moves and rules errors only                                 |
+| Check  | Player acts first, then may compare the move with the evaluator   |
+| Hint   | Primary direction, alternative direction, and weak tiles          |
 | Guided | Target layout, missing tiles, suggested actions, and explanations |
 
 "Off" still enforces legal rules; it does not offer strategy.
@@ -299,16 +299,16 @@ Capstone sequence:
 
 Use a small reusable vocabulary of interactions rather than custom UI for every lesson.
 
-| Interaction | Player action | Typical use |
-| --- | --- | --- |
-| Select | tap one or more tiles/options | find a pair, select closest hand |
-| Drag to group | move tiles into labeled trays | pair/pung/kong, sort rack |
-| Fill slots | drag tiles into target gaps | missing tiles, build Mahjong |
-| Assign variable | choose suit/rank for a pattern token | template expansion |
-| Toggle comparison | switch Primary/Alternative | pivot and overlap |
-| Pass three | place exactly three tiles in pass tray | Charleston |
-| Discard one | place one tile in discard area | turn decisions |
-| Continue or pivot | choose a strategy action and target | mid-game scenarios |
+| Interaction       | Player action                          | Typical use                      |
+| ----------------- | -------------------------------------- | -------------------------------- |
+| Select            | tap one or more tiles/options          | find a pair, select closest hand |
+| Drag to group     | move tiles into labeled trays          | pair/pung/kong, sort rack        |
+| Fill slots        | drag tiles into target gaps            | missing tiles, build Mahjong     |
+| Assign variable   | choose suit/rank for a pattern token   | template expansion               |
+| Toggle comparison | switch Primary/Alternative             | pivot and overlap                |
+| Pass three        | place exactly three tiles in pass tray | Charleston                       |
+| Discard one       | place one tile in discard area         | turn decisions                   |
+| Continue or pivot | choose a strategy action and target    | mid-game scenarios               |
 
 ### Feedback sequence
 
@@ -343,10 +343,10 @@ Create an original SVG tile set. Every suited tile has:
 
 Display modes:
 
-| Mode | Appearance |
-| --- | --- |
-| Learning | large number, suit label, suit shape, traditional artwork |
-| Assisted | number and suit shape remain; label removed |
+| Mode        | Appearance                                                  |
+| ----------- | ----------------------------------------------------------- |
+| Learning    | large number, suit label, suit shape, traditional artwork   |
+| Assisted    | number and suit shape remain; label removed                 |
 | Traditional | original tile artwork with small accessibility corner index |
 
 The player can switch manually. Lessons may recommend a mode but must not silently change a user preference.
@@ -505,7 +505,7 @@ type Wind = 'east' | 'south' | 'west' | 'north';
 type Dragon = 'red' | 'green' | 'white';
 
 type TileId =
-  | `${Suit}:${1|2|3|4|5|6|7|8|9}`
+  | `${Suit}:${1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}`
   | `wind:${Wind}`
   | `dragon:${Dragon}`
   | `flower`
@@ -530,7 +530,7 @@ sections:
     title: Even Runs
     hands:
       - id: even-runs-01
-        label: "FF aaa bbbb cccc"
+        label: 'FF aaa bbbb cccc'
         concealed: false
         groups:
           - { kind: flowers, count: 2, joker: forbidden }
@@ -667,11 +667,11 @@ Bots use the same evaluator exposed to the learner. They may not inspect hidden 
 
 ### Difficulty levels
 
-| Level | Policy |
-| --- | --- |
-| Beginner | chooses among top candidates, ignores defense and deeper call consequences |
+| Level    | Policy                                                                                    |
+| -------- | ----------------------------------------------------------------------------------------- |
+| Beginner | chooses among top candidates, ignores defense and deeper call consequences                |
 | Standard | uses full current-state evaluator, availability, Primary/Alternative, and basic call cost |
-| Advanced | evaluates one draw/discard ply, opponent exposure compatibility, and defensive risk |
+| Advanced | evaluates one draw/discard ply, opponent exposure compatibility, and defensive risk       |
 
 Advanced is explicitly search depth plus heuristics, not machine learning.
 
@@ -701,14 +701,14 @@ Exercises should be generated from known valid targets, then transformed predict
 
 ### Difficulty controls
 
-| Dimension | Easy | Medium | Hard |
-| --- | --- | --- | --- |
-| Missing tiles | 1–2 | 3–4 | 4+ |
-| Candidate targets | one obvious | two close | several tied by raw distance |
-| Distractors | other suits/ranks | related ranks | useful to alternative hands |
-| Natural-only risk | none | one pair | dead/low-availability pair |
-| Suit variables | fixed/one | two | all suits plus rank variable |
-| Game state | rack only | some discards | exposures and availability |
+| Dimension         | Easy              | Medium        | Hard                         |
+| ----------------- | ----------------- | ------------- | ---------------------------- |
+| Missing tiles     | 1–2               | 3–4           | 4+                           |
+| Candidate targets | one obvious       | two close     | several tied by raw distance |
+| Distractors       | other suits/ranks | related ranks | useful to alternative hands  |
+| Natural-only risk | none              | one pair      | dead/low-availability pair   |
+| Suit variables    | fixed/one         | two           | all suits plus rank variable |
+| Game state        | rack only         | some discards | exposures and availability   |
 
 Every generated exercise must pass a solver-based validation before display.
 
@@ -1046,4 +1046,3 @@ This slice exercises the product's unique value before investing in the complete
 ## 22. Definition of the product in one sentence
 
 **Mahjong Academy is a deterministic, visual learning game that teaches a player to compile an abstract American Mahjong template into a concrete target, understand the current hand and its alternative, identify what is missing, and apply that skill in a full game against bots.**
-
