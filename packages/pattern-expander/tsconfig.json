@@ -6,3 +6,4 @@
   },
   "include": ["src"],
   "references": [{ "path": "../tile-model" }, { "path": "../card-schema" }]
+}
