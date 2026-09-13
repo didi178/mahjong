@@ -67,6 +67,11 @@ groups:
       flower: 1
     joker_allowed: false
 
+  - kind: single
+    tile:
+      flower: 2
+    joker_allowed: false
+
 constraints:
   - type: distinct
     vars: [S1, S2]

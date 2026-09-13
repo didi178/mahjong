@@ -35,7 +35,7 @@ groups:
       rank: R
     joker_allowed: true
 
-  - kind: kong
+  - kind: pung
     tile:
       honor: dragon
       color: white

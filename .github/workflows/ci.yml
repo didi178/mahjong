@@ -106,8 +106,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build card-schema
+        run: pnpm run build --filter=@mahjong/card-schema
+
       - name: Validate content
-        run: |
-          echo "Content validation will be implemented in issue #3"
-          echo "This job ensures card-schema validates all YAML files in content/"
-          exit 0
+        run: pnpm run validate --filter=@mahjong/card-schema

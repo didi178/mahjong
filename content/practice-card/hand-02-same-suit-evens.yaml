@@ -36,7 +36,7 @@ groups:
       rank: R3
     joker_allowed: true
 
-  - kind: kong
+  - kind: pung
     tile:
       suit: S
       rank: R4

@@ -50,6 +50,11 @@ groups:
       direction: south
     joker_allowed: false
 
+  - kind: pair
+    tile:
+      flower: 3
+    joker_allowed: false
+
 constraints:
   - type: distinct
     vars: [S1, S2]
