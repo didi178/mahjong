@@ -9,7 +9,7 @@ import { describe, it, expect } from 'vitest';
 import { validateHand, countOf, ValidationError } from './validator.js';
 import { loadHandFromFile } from './parser.js';
 import { Hand, GroupKind } from './types.js';
-import { glob } from 'glob';
+import { readdir } from 'fs/promises';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -17,6 +17,17 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const repoRoot = join(__dirname, '../../..');
+
+async function findYamlFiles(dir: string): Promise<string[]> {
+  try {
+    const entries = await readdir(dir, { withFileTypes: true });
+    return entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith('.yaml'))
+      .map((entry) => join(dir, entry.name));
+  } catch {
+    return [];
+  }
+}
 
 describe('countOf', () => {
   it('should return correct tile count for each group kind', () => {
@@ -161,7 +172,8 @@ describe('validateHand', () => {
 
 describe('All shipped practice hands', () => {
   it('should validate that every practice hand totals exactly 14 tiles', async () => {
-    const handFiles = await glob('content/practice-card/hand-*.yaml', { cwd: repoRoot });
+    const allFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
+    const handFiles = allFiles.filter((f) => f.includes('/hand-'));
 
     expect(handFiles.length).toBeGreaterThan(0);
 
@@ -195,7 +207,8 @@ describe('All shipped practice hands', () => {
   });
 
   it('should validate all practice hands against the schema', async () => {
-    const handFiles = await glob('content/practice-card/hand-*.yaml', { cwd: repoRoot });
+    const allFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
+    const handFiles = allFiles.filter((f) => f.includes('/hand-'));
 
     expect(handFiles.length).toBeGreaterThan(0);
 

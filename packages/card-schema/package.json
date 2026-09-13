@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@mahjong/tile-model": "workspace:*",
-    "glob": "^11.0.0",
     "yaml": "^2.5.1"
   },
   "devDependencies": {

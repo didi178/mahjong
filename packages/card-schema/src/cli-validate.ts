@@ -4,22 +4,33 @@
  * Used in CI to ensure all YAML files are valid
  */
 
-import { glob } from 'glob';
 import { loadHandFromFile, loadRulesetFromFile } from './parser.js';
 import { validateHand } from './validator.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { readdir } from 'fs/promises';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const repoRoot = join(__dirname, '../../..');
+
+async function findYamlFiles(dir: string): Promise<string[]> {
+  try {
+    const entries = await readdir(dir, { withFileTypes: true });
+    return entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith('.yaml'))
+      .map((entry) => join(dir, entry.name));
+  } catch {
+    return [];
+  }
+}
 
 async function main() {
   let errorCount = 0;
 
   // Validate rulesets
   console.log('Validating rulesets...');
-  const rulesetFiles = await glob('content/rulesets/*.yaml', { cwd: repoRoot });
+  const rulesetFiles = await findYamlFiles(join(repoRoot, 'content/rulesets'));
 
   for (const file of rulesetFiles) {
     try {
@@ -33,7 +44,9 @@ async function main() {
 
   // Validate practice hands
   console.log('\nValidating practice hands...');
-  const handFiles = await glob('content/practice-card/*.yaml', { cwd: repoRoot });
+  const handFiles = (await findYamlFiles(join(repoRoot, 'content/practice-card'))).filter(
+    (f) => !f.includes('/golden/')
+  );
 
   for (const file of handFiles) {
     try {
