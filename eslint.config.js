@@ -94,7 +94,7 @@ export default [
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
-        // No project - tests are excluded from main tsconfig
+        project: null, // Explicitly disable type-checking for tests
       },
       globals: {
         console: 'readonly',
