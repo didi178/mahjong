@@ -166,21 +166,19 @@ describe('validateHand', () => {
 
     const errors = validateHand(hand);
     expect(errors.length).toBeGreaterThan(0);
-    expect(errors.some((e) => e.includes('references undefined variable'))).toBe(true);
+    expect(errors.some((e) => e.includes('Undefined variable'))).toBe(true);
   });
 });
 
 describe('All shipped practice hands', () => {
   it('should validate that every practice hand totals exactly 14 tiles', async () => {
-    const allFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
-    const handFiles = allFiles.filter((f) => f.includes('/hand-'));
+    const handFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
 
     expect(handFiles.length).toBeGreaterThan(0);
 
     const results = await Promise.all(
       handFiles.map(async (file) => {
-        const fullPath = join(repoRoot, file);
-        const hand = await loadHandFromFile(fullPath);
+        const hand = await loadHandFromFile(file);
         const tileCount = hand.groups.reduce((sum, group) => sum + countOf(group.kind), 0);
 
         return {
@@ -207,14 +205,12 @@ describe('All shipped practice hands', () => {
   });
 
   it('should validate all practice hands against the schema', async () => {
-    const allFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
-    const handFiles = allFiles.filter((f) => f.includes('/hand-'));
+    const handFiles = await findYamlFiles(join(repoRoot, 'content/practice-card'));
 
     expect(handFiles.length).toBeGreaterThan(0);
 
     for (const file of handFiles) {
-      const fullPath = join(repoRoot, file);
-      const hand = await loadHandFromFile(fullPath);
+      const hand = await loadHandFromFile(file);
       const errors = validateHand(hand);
 
       expect(errors, `${file} should have no validation errors`).toEqual([]);

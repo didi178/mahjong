@@ -5,13 +5,14 @@
  */
 
 import { parse as parseYAML } from 'yaml';
+import { readFile } from 'fs/promises';
 import type { Hand, Ruleset } from './types.js';
 import { validateHand, validateRuleset, ValidationError } from './validator.js';
 
 /**
  * Parse a hand definition from YAML string.
  */
-export function parseHand(yaml: string, ruleset: Ruleset): Hand {
+export function parseHand(yaml: string, ruleset?: Ruleset): Hand {
   let parsed: unknown;
   try {
     parsed = parseYAML(yaml, { strict: true, uniqueKeys: true });
@@ -26,7 +27,10 @@ export function parseHand(yaml: string, ruleset: Ruleset): Hand {
   }
 
   const hand = parsed as Hand;
-  validateHand(hand, ruleset);
+  const errors = validateHand(hand, ruleset);
+  if (errors.length > 0) {
+    throw new ValidationError(errors.join('; '));
+  }
   return hand;
 }
 
@@ -53,18 +57,20 @@ export function parseRuleset(yaml: string): Ruleset {
 }
 
 /**
- * Load hand from file content (for Node.js environment).
+ * Load hand from file path (for Node.js environment).
  */
 export async function loadHandFromFile(
-  content: string,
-  ruleset: Ruleset
+  filePath: string,
+  ruleset?: Ruleset
 ): Promise<Hand> {
+  const content = await readFile(filePath, 'utf-8');
   return parseHand(content, ruleset);
 }
 
 /**
- * Load ruleset from file content (for Node.js environment).
+ * Load ruleset from file path (for Node.js environment).
  */
-export async function loadRulesetFromFile(content: string): Promise<Ruleset> {
+export async function loadRulesetFromFile(filePath: string): Promise<Ruleset> {
+  const content = await readFile(filePath, 'utf-8');
   return parseRuleset(content);
 }

@@ -43,46 +43,66 @@ export function countOf(kind: GroupKind): number {
 
 /**
  * Validate a hand definition.
+ * Returns an array of error messages (empty array if valid).
  */
-export function validateHand(hand: Hand, ruleset: Ruleset): void {
+export function validateHand(hand: Hand, ruleset?: Ruleset): string[] {
+  const errors: string[] = [];
+
   // Validate required fields
   if (!hand.id || typeof hand.id !== 'string') {
-    throw new ValidationError('Hand ID must be a non-empty string');
+    errors.push('Hand ID must be a non-empty string');
+    return errors; // Can't continue without a valid ID
   }
 
   if (!hand.name || typeof hand.name !== 'string') {
-    throw new ValidationError('Hand name must be a non-empty string', hand.id);
+    errors.push(`${hand.id}: Hand name must be a non-empty string`);
   }
 
   if (typeof hand.concealed !== 'boolean') {
-    throw new ValidationError('concealed must be a boolean', hand.id);
+    errors.push(`${hand.id}: concealed must be a boolean`);
   }
 
   if (!Array.isArray(hand.groups) || hand.groups.length === 0) {
-    throw new ValidationError('Hand must have at least one group', hand.id);
+    errors.push(`${hand.id}: Hand must have at least one group`);
+    return errors; // Can't validate groups if they don't exist
   }
 
-  // Validate groups
+  // Validate groups (only with ruleset if provided)
   for (let i = 0; i < hand.groups.length; i++) {
-    validateGroup(hand.groups[i]!, ruleset, hand.variables, `${hand.id}.groups[${i}]`);
+    try {
+      validateGroup(hand.groups[i]!, ruleset, hand.variables, `${hand.id}.groups[${i}]`);
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        errors.push(err.message);
+      } else {
+        errors.push(`${hand.id}.groups[${i}]: ${String(err)}`);
+      }
+    }
   }
 
   // Validate constraints
   if (hand.constraints) {
     const varNames = new Set(Object.keys(hand.variables || {}));
     for (let i = 0; i < hand.constraints.length; i++) {
-      validateConstraint(hand.constraints[i]!, varNames, `${hand.id}.constraints[${i}]`);
+      try {
+        validateConstraint(hand.constraints[i]!, varNames, `${hand.id}.constraints[${i}]`);
+      } catch (err) {
+        if (err instanceof ValidationError) {
+          errors.push(err.message);
+        } else {
+          errors.push(`${hand.id}.constraints[${i}]: ${String(err)}`);
+        }
+      }
     }
   }
 
   // Validate total tile count (standard hand is 14 tiles)
   const totalTiles = hand.groups.reduce((sum, g) => sum + countOf(g.kind), 0);
   if (totalTiles !== 14) {
-    throw new ValidationError(
-      `Hand must have exactly 14 tiles, got ${totalTiles}`,
-      hand.id
-    );
+    errors.push(`${hand.id}: Hand must total exactly 14 tiles, got ${totalTiles}`);
   }
+
+  return errors;
 }
 
 /**
@@ -90,7 +110,7 @@ export function validateHand(hand: Hand, ruleset: Ruleset): void {
  */
 function validateGroup(
   group: Group,
-  ruleset: Ruleset,
+  ruleset: Ruleset | undefined,
   variables: HandVariables | undefined,
   path: string
 ): void {
@@ -100,8 +120,8 @@ function validateGroup(
     throw new ValidationError(`Invalid kind: ${group.kind}`, path);
   }
 
-  // Validate joker_allowed against ruleset
-  if (group.joker_allowed) {
+  // Validate joker_allowed against ruleset (only if ruleset provided)
+  if (group.joker_allowed && ruleset) {
     if (group.kind === 'single' && !ruleset.jokers.allowed_in_singles) {
       throw new ValidationError(
         `Jokers not allowed in singles per ruleset`,

@@ -34,7 +34,7 @@ async function main() {
 
   for (const file of rulesetFiles) {
     try {
-      const ruleset = await loadRulesetFromFile(join(repoRoot, file));
+      await loadRulesetFromFile(file);
       console.log(`✓ ${file}`);
     } catch (error) {
       console.error(`✗ ${file}: ${error instanceof Error ? error.message : String(error)}`);
@@ -50,7 +50,7 @@ async function main() {
 
   for (const file of handFiles) {
     try {
-      const hand = await loadHandFromFile(join(repoRoot, file));
+      const hand = await loadHandFromFile(file);
       const errors = validateHand(hand);
 
       if (errors.length > 0) {
