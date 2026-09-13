@@ -9,6 +9,9 @@ export default defineConfig({
     // Use native Node test runner for better ESM support
     environment: 'node',
 
+    // Allow packages with no tests to pass (scaffold stage)
+    passWithNoTests: true,
+
     // Coverage settings
     coverage: {
       provider: 'v8',
