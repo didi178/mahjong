@@ -1,0 +1,80 @@
+# Hand 6: Many singles and pairs
+# Coverage: single and pair kinds (multiple), no jokers on singles/pairs
+
+id: hand-06-singles-pairs
+name: "Singles and Pairs"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+  R4:
+    type: rank
+
+groups:
+  - kind: single
+    tile:
+      suit: S1
+      rank: R1
+    joker_allowed: false
+
+  - kind: single
+    tile:
+      suit: S1
+      rank: R2
+    joker_allowed: false
+
+  - kind: single
+    tile:
+      suit: S2
+      rank: R3
+    joker_allowed: false
+
+  - kind: single
+    tile:
+      suit: S2
+      rank: R4
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      honor: dragon
+      color: red
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      honor: dragon
+      color: green
+    joker_allowed: false
+
+  - kind: pung
+    tile:
+      honor: wind
+      direction: north
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      flower: 1
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2]
+
+  - type: consecutive
+    vars: [R1, R2]
+    step: 1
+
+  - type: consecutive
+    vars: [R3, R4]
+    step: 1

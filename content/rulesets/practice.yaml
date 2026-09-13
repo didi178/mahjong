@@ -1,0 +1,88 @@
+# Practice Ruleset for Mahjong Academy
+# Version 0.1 - Original practice ruleset
+#
+# This ruleset records the open decisions from design §20 with concrete defaults
+# chosen for the practice/learning environment.
+
+id: practice
+name: "Mahjong Academy Practice Ruleset"
+version: "0.1.0"
+
+# Charleston (tile passing before play)
+charleston:
+  enabled: true
+  passes: 3
+  direction_sequence: [right, across, left]
+  second_charleston: false  # Optional second Charleston: off by default (simplest)
+  blind_pass_allowed: last_only  # Blind pass legal on LAST pass only
+
+# Calling and Exposure Rules
+calling:
+  last_discard_mahjong_only: true  # Last discard callable for Mahjong only, not exposure
+  priority: mahjong_first  # Mahjong caller has priority; ties resolved by seat order
+
+# Joker Rules
+jokers:
+  exchange_timing: own_turn_only  # Exchange jokers on your own turn only
+  allowed_in_concealed: true  # Jokers allowed in concealed pungs/kongs
+  allowed_in_singles: false  # Traditional: no jokers in singles
+  allowed_in_pairs: false  # Traditional: no jokers in pairs
+
+# Flower Treatment
+flowers:
+  treatment: pattern_elements  # Flowers are pattern elements (simplifies MVP rules)
+  # Alternative would be 'bonus_draws' (traditional), but that adds runtime complexity
+
+# Wall Configuration
+wall:
+  size: 152  # Standard wall: 144 tiles + 8 flowers
+  include_flowers: true  # Flowers shuffled into wall (matches pattern_elements treatment)
+
+# Game End Conditions
+game_end:
+  invalid_mahjong: dead_hand  # Invalid Mahjong = dead hand for caller; others continue
+  draw_game: no_winner  # Wall exhausted = no winner, no scoring
+
+# Content Source
+content:
+  cards_source: user_authored_only  # Per §2.6: no licensed annual card content
+  primary_language: en  # English first; schema supports i18n from day one
+
+# Tile Inventory
+# Standard American Mahjong tile set
+tiles:
+  suits:
+    - name: crak
+      count: 36  # 4 of each rank 1-9
+    - name: bam
+      count: 36
+    - name: dot
+      count: 36
+
+  honors:
+    dragons:
+      - color: red
+        count: 4
+      - color: green
+        count: 4
+      - color: white
+        count: 4
+    winds:
+      - direction: north
+        count: 4
+      - direction: east
+        count: 4
+      - direction: south
+        count: 4
+      - direction: west
+        count: 4
+
+  flowers:
+    count: 8  # 8 flowers total (traditional: 1-4 numbered, distinguishable)
+    distinguishable: true
+
+  jokers:
+    count: 8  # 8 jokers (not distinguishable by identity)
+
+# Total tiles: 108 suited + 24 honors + 8 flowers + 8 jokers = 148
+# Some rulesets have 152 (with 4 white flowers), adjust as needed

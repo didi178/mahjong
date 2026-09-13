@@ -1,0 +1,52 @@
+# Hand 9: All three dragon colors
+# Coverage: fixed dragon tiles, quint, forbid_kind constraint
+
+id: hand-09-all-dragons
+name: "Three Dragons"
+concealed: false
+
+variables:
+  S:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+
+groups:
+  - kind: pung
+    tile:
+      honor: dragon
+      color: red
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      honor: dragon
+      color: green
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      honor: dragon
+      color: white
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S
+      rank: R1
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      suit: S
+      rank: R2
+    joker_allowed: false
+
+constraints:
+  - type: forbid_kind
+    kinds: [flower]
+
+  - type: distinct
+    vars: [R1, R2]

@@ -1,0 +1,57 @@
+# Hand 2: Single suit with even ranks
+# Coverage: single-suit, parity constraint, kong kind, equal(suits)
+
+id: hand-02-same-suit-evens
+name: "Single Suit - All Even Ranks"
+concealed: false
+
+variables:
+  S:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+  R4:
+    type: rank
+
+groups:
+  - kind: pung
+    tile:
+      suit: S
+      rank: R1
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S
+      rank: R2
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S
+      rank: R3
+    joker_allowed: true
+
+  - kind: kong
+    tile:
+      suit: S
+      rank: R4
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      honor: dragon
+      color: green
+    joker_allowed: false
+
+constraints:
+  - type: parity
+    vars: [R1, R2, R3, R4]
+    parity: even
+
+  - type: distinct
+    vars: [R1, R2, R3, R4]

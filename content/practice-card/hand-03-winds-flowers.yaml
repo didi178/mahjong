@@ -1,0 +1,39 @@
+# Hand 3: Fixed tiles - Winds and Flowers
+# Coverage: fixed tile IDs (winds, flowers), quint kind, concealed hand
+
+id: hand-03-winds-flowers
+name: "Winds and Flowers"
+concealed: true
+
+variables: {}
+
+groups:
+  - kind: pung
+    tile:
+      honor: wind
+      direction: north
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      honor: wind
+      direction: south
+    joker_allowed: true
+
+  - kind: quint
+    tile:
+      flower: 1
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      honor: dragon
+      color: white
+    joker_allowed: false
+
+  - kind: single
+    tile:
+      flower: 2
+    joker_allowed: false
+
+constraints: []

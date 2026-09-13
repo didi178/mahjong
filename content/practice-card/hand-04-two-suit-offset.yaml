@@ -1,0 +1,63 @@
+# Hand 4: Two suits with rank offset
+# Coverage: two-suit, offset constraint, distinct(ranks), exposure_group across 3 groups
+
+id: hand-04-two-suit-offset
+name: "Two Suits - Rank Offset"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+
+groups:
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R1
+    joker_allowed: true
+    exposure_group: B
+
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R2
+    joker_allowed: true
+    exposure_group: B
+
+  - kind: pung
+    tile:
+      suit: S2
+      rank: R3
+    joker_allowed: true
+    exposure_group: B
+
+  - kind: pung
+    tile:
+      honor: dragon
+      color: red
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      honor: wind
+      direction: east
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2]
+
+  - type: offset
+    vars: [R1, R2]
+    delta: 3
+
+  - type: distinct
+    vars: [R1, R2, R3]

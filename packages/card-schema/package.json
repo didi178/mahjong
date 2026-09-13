@@ -20,7 +20,8 @@
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
-    "@mahjong/tile-model": "workspace:*"
+    "@mahjong/tile-model": "workspace:*",
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
     "fast-check": "^3.23.1",

@@ -1,0 +1,40 @@
+{
+  "hand_id": "hand-07-equal-ranks",
+  "note": "Partial enumeration - showing pattern. Full set has 9 ranks × 1 three-suit combination = 9 targets",
+  "targets": [
+    {
+      "binding": { "S1": "crak", "S2": "bam", "S3": "dot", "R": 1 },
+      "tiles": [
+        { "suit": "crak", "rank": 1 },
+        { "suit": "crak", "rank": 1 },
+        { "suit": "crak", "rank": 1 },
+        { "suit": "bam", "rank": 1 },
+        { "suit": "bam", "rank": 1 },
+        { "suit": "bam", "rank": 1 },
+        { "suit": "dot", "rank": 1 },
+        { "suit": "dot", "rank": 1 },
+        { "suit": "dot", "rank": 1 },
+        { "suit": "dot", "rank": 1 },
+        { "honor": "wind", "direction": "west" },
+        { "honor": "wind", "direction": "west" }
+      ]
+    },
+    {
+      "binding": { "S1": "crak", "S2": "bam", "S3": "dot", "R": 5 },
+      "tiles": [
+        { "suit": "crak", "rank": 5 },
+        { "suit": "crak", "rank": 5 },
+        { "suit": "crak", "rank": 5 },
+        { "suit": "bam", "rank": 5 },
+        { "suit": "bam", "rank": 5 },
+        { "suit": "bam", "rank": 5 },
+        { "suit": "dot", "rank": 5 },
+        { "suit": "dot", "rank": 5 },
+        { "suit": "dot", "rank": 5 },
+        { "suit": "dot", "rank": 5 },
+        { "honor": "wind", "direction": "west" },
+        { "honor": "wind", "direction": "west" }
+      ]
+    }
+  ]
+}

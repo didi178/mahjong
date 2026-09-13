@@ -1,0 +1,24 @@
+{
+  "hand_id": "hand-03-winds-flowers",
+  "targets": [
+    {
+      "binding": {},
+      "tiles": [
+        { "honor": "wind", "direction": "north" },
+        { "honor": "wind", "direction": "north" },
+        { "honor": "wind", "direction": "north" },
+        { "honor": "wind", "direction": "south" },
+        { "honor": "wind", "direction": "south" },
+        { "honor": "wind", "direction": "south" },
+        { "flower": 1 },
+        { "flower": 1 },
+        { "flower": 1 },
+        { "flower": 1 },
+        { "flower": 1 },
+        { "honor": "dragon", "color": "white" },
+        { "honor": "dragon", "color": "white" },
+        { "flower": 2 }
+      ]
+    }
+  ]
+}
