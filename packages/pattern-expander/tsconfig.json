@@ -5,6 +5,4 @@
     "rootDir": "./src"
   },
   "include": ["src"],
-  "references": [TEMP{ "path": "../tile-model" },
-    { "path": "../card-schema" }
-  ]
+  "references": [{ "path": "../tile-model" }, { "path": "../card-schema" }]

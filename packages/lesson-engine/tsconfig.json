@@ -5,5 +5,4 @@
     "rootDir": "./src"
   },
   "include": ["src"],
-  "references": [TEMP{ "path": "../rules-engine" }
-  ],
+  "references": [{ "path": "../rules-engine" }]

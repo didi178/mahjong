@@ -6,5 +6,4 @@
     "jsx": "react-jsx"
   },
   "include": ["src"],
-  "references": [TEMP{ "path": "../tile-model" }
-  ],
+  "references": [{ "path": "../tile-model" }]
