@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { validateHand, countOf, ValidationError } from './validator.js';
+import { validateHand, countOf } from './validator.js';
 import { loadHandFromFile } from './parser.js';
 import { Hand, GroupKind } from './types.js';
 import { readdir } from 'fs/promises';
