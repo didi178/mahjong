@@ -1,0 +1,35 @@
+name: Validate PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-title:
+    name: Check PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title format
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            refactor
+            test
+            chore
+            perf
+          requireScope: false
+
+  check-labels:
+    name: Check Labels
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for required labels
+        run: |
+          if [ "${{ github.event.pull_request.labels[0].name }}" = "" ]; then
+            echo "::warning::PR has no labels"
+          fi

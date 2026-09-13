@@ -1,0 +1,15 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/tile-model" },
+    { "path": "./packages/card-schema" },
+    { "path": "./packages/pattern-expander" },
+    { "path": "./packages/hand-evaluator" },
+    { "path": "./packages/rules-engine" },
+    { "path": "./packages/bot-engine" },
+    { "path": "./packages/lesson-engine" },
+    { "path": "./packages/explanation-engine" },
+    { "path": "./packages/ui-components" },
+    { "path": "./apps/web" }
+  ]
+}
