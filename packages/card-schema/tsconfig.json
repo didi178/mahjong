@@ -5,7 +5,5 @@
     "rootDir": "./src"
   },
   "include": ["src"],
-  "references": [
-    { "path": "../tile-model" }
-  ]
+  "references": [{ "path": "../tile-model" }]
 }
