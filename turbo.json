@@ -31,8 +31,6 @@
       "cache": false
     }
   },
-  "globalDependencies": [
-    "tsconfig.base.json",
-    "turbo.json"
-  ]
+  "globalDependencies": ["tsconfig.base.json", "turbo.json"]
 }
+

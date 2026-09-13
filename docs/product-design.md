@@ -1046,3 +1046,4 @@ This slice exercises the product's unique value before investing in the complete
 ## 22. Definition of the product in one sentence
 
 **Mahjong Academy is a deterministic, visual learning game that teaches a player to compile an abstract American Mahjong template into a concrete target, understand the current hand and its alternative, identify what is missing, and apply that skill in a full game against bots.**
+

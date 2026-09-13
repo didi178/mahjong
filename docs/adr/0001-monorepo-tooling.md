@@ -179,3 +179,4 @@ The project needs a monorepo structure with 9+ packages, a PWA web app, and cont
 - Turborepo docs: https://turbo.build/repo/docs
 - Vitest docs: https://vitest.dev/
 - fast-check docs: https://fast-check.dev/
+
