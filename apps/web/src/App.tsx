@@ -15,9 +15,7 @@ function App() {
       <main className="app-main">
         <div className="status-card">
           <h2>✅ Project Scaffolded</h2>
-          <p>
-            The monorepo structure is set up and ready for feature development.
-          </p>
+          <p>The monorepo structure is set up and ready for feature development.</p>
           <ul className="package-list">
             <li>✓ Workspace configured (pnpm + Turborepo)</li>
             <li>✓ TypeScript strict mode enabled</li>
