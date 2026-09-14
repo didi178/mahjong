@@ -59,10 +59,7 @@ export function parseRuleset(yaml: string): Ruleset {
 /**
  * Load hand from file path (for Node.js environment).
  */
-export async function loadHandFromFile(
-  filePath: string,
-  ruleset?: Ruleset
-): Promise<Hand> {
+export async function loadHandFromFile(filePath: string, ruleset?: Ruleset): Promise<Hand> {
   const content = await readFile(filePath, 'utf-8');
   return parseHand(content, ruleset);
 }

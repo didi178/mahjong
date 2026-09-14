@@ -4,14 +4,7 @@
  * Validates hand definitions against schema rules.
  */
 
-import type {
-  Hand,
-  Group,
-  GroupKind,
-  Constraint,
-  Ruleset,
-  HandVariables,
-} from './types.js';
+import type { Hand, Group, GroupKind, Constraint, Ruleset, HandVariables } from './types.js';
 
 export class ValidationError extends Error {
   constructor(
@@ -129,10 +122,7 @@ function validateGroup(
       );
     }
     if (group.kind === 'pair' && !ruleset.jokers.allowed_in_pairs) {
-      throw new ValidationError(
-        `Jokers not allowed in pairs per ruleset`,
-        `${path}.joker_allowed`
-      );
+      throw new ValidationError(`Jokers not allowed in pairs per ruleset`, `${path}.joker_allowed`);
     }
   }
 
@@ -141,16 +131,10 @@ function validateGroup(
   if ('suit' in tile && 'rank' in tile) {
     if (variables) {
       if (typeof tile.suit === 'string' && !(tile.suit in variables)) {
-        throw new ValidationError(
-          `Undefined variable: ${tile.suit}`,
-          `${path}.tile.suit`
-        );
+        throw new ValidationError(`Undefined variable: ${tile.suit}`, `${path}.tile.suit`);
       }
       if (typeof tile.rank === 'string' && !(tile.rank in variables)) {
-        throw new ValidationError(
-          `Undefined variable: ${tile.rank}`,
-          `${path}.tile.rank`
-        );
+        throw new ValidationError(`Undefined variable: ${tile.rank}`, `${path}.tile.rank`);
       }
     }
   }
@@ -159,11 +143,7 @@ function validateGroup(
 /**
  * Validate a constraint.
  */
-function validateConstraint(
-  constraint: Constraint,
-  varNames: Set<string>,
-  path: string
-): void {
+function validateConstraint(constraint: Constraint, varNames: Set<string>, path: string): void {
   switch (constraint.type) {
     case 'distinct':
     case 'equal':
@@ -182,10 +162,7 @@ function validateConstraint(
 
     case 'consecutive':
       if (!Array.isArray(constraint.vars) || constraint.vars.length < 2) {
-        throw new ValidationError(
-          'consecutive constraint requires at least 2 variables',
-          path
-        );
+        throw new ValidationError('consecutive constraint requires at least 2 variables', path);
       }
       if (typeof constraint.step !== 'number' || constraint.step < 1) {
         throw new ValidationError('consecutive step must be a positive number', path);
@@ -236,10 +213,7 @@ function validateConstraint(
 
     case 'forbid_kind':
       if (!Array.isArray(constraint.kinds) || constraint.kinds.length === 0) {
-        throw new ValidationError(
-          'forbid_kind constraint requires non-empty kinds array',
-          path
-        );
+        throw new ValidationError('forbid_kind constraint requires non-empty kinds array', path);
       }
       break;
   }

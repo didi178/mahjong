@@ -5,6 +5,7 @@ This directory contains hand-authored expected target sets for each practice han
 ## Purpose
 
 Since `pattern-expander` (issue #4) doesn't exist yet, these golden files serve as:
+
 1. **Exit-condition verification** for #2: proves the schema is expressive enough
 2. **Test oracles** for #3: when the expander is built, it must reproduce these byte-for-byte
 
@@ -21,9 +22,7 @@ Each `hand-XX-name.json` file contains:
         "VAR1": "value1",
         "VAR2": "value2"
       },
-      "tiles": [
-        /* 14-tile multiset as array of tile objects */
-      ]
+      "tiles": [/* 14-tile multiset as array of tile objects */]
     }
   ]
 }
@@ -56,6 +55,7 @@ Each `hand-XX-name.json` file contains:
 ## Enumeration Rules
 
 For hands with variables:
+
 1. Enumerate all valid bindings satisfying the constraints
 2. For each binding, instantiate the groups to get 14 concrete tiles
 3. Duplicates (same multiset under different bindings) should be included only once
@@ -64,6 +64,7 @@ For hands with variables:
 ## Coverage
 
 Not all hands have golden files yet. Priority:
+
 - ✅ hand-03 (fixed tiles, no variables - simplest oracle)
 - ✅ hand-07 (equal ranks - demonstrates variable binding enumeration)
 - 🚧 Remaining hands: to be completed

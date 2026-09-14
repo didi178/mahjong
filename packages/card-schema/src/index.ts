@@ -26,9 +26,4 @@ export type {
 export { ValidationError, validateHand, validateRuleset, countOf } from './validator.js';
 
 // Export parser
-export {
-  parseHand,
-  parseRuleset,
-  loadHandFromFile,
-  loadRulesetFromFile,
-} from './parser.js';
+export { parseHand, parseRuleset, loadHandFromFile, loadRulesetFromFile } from './parser.js';

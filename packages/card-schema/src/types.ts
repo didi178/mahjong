@@ -56,13 +56,7 @@ export interface Group {
 // ============================================================================
 
 export type ConstraintType =
-  | 'distinct'
-  | 'equal'
-  | 'consecutive'
-  | 'parity'
-  | 'in_set'
-  | 'offset'
-  | 'forbid_kind';
+  'distinct' | 'equal' | 'consecutive' | 'parity' | 'in_set' | 'offset' | 'forbid_kind';
 
 export type Constraint =
   | { type: 'distinct'; vars: string[] }

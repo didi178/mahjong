@@ -193,9 +193,7 @@ describe('All shipped practice hands', () => {
     const invalid = results.filter((r) => !r.isValid);
 
     if (invalid.length > 0) {
-      const message = invalid
-        .map((r) => `  ${r.file} (${r.id}): ${r.tileCount} tiles`)
-        .join('\n');
+      const message = invalid.map((r) => `  ${r.file} (${r.id}): ${r.tileCount} tiles`).join('\n');
       throw new Error(
         `Found ${invalid.length} hand(s) with incorrect tile count:\n${message}\n\nAll hands must total exactly 14 tiles.`
       );
