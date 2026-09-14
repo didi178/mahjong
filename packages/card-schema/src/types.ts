@@ -5,18 +5,37 @@
  * Hands consist of variables, groups, and constraints.
  */
 
+import type { Suit, Rank, DragonColor, Wind, FlowerNumber, TileId, InventorySpec } from '@mahjong/tile-model';
+
 // ============================================================================
-// Tile Identities
+// Re-export tile primitives for convenience
 // ============================================================================
 
-export type Suit = 'crak' | 'bam' | 'dot';
-export type Rank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-export type DragonColor = 'red' | 'green' | 'white';
-export type Wind = 'north' | 'east' | 'south' | 'west';
-export type FlowerNumber = 1 | 2 | 3 | 4;
+export type { Suit, Rank, DragonColor, Wind, FlowerNumber, TileId, InventorySpec };
 
+// ============================================================================
+// Variable References and Slots
+// ============================================================================
+
+export interface VariableRef {
+  kind: 'var';
+  name: string;
+}
+
+// A tile SLOT in a hand template can have variables in different positions
+export type SuitSlot = Suit | VariableRef;
+export type RankSlot = Rank | VariableRef;
+
+export type TileSlot =
+  | { kind: 'suit'; suit: SuitSlot; rank: RankSlot }
+  | { kind: 'wind'; direction: Wind | VariableRef }
+  | { kind: 'dragon'; color: DragonColor | VariableRef }
+  | { kind: 'flower'; number: FlowerNumber | VariableRef }
+  | { kind: 'joker' }; // Jokers are never slots (they're substitutes, not templates)
+
+// Legacy type for backward compatibility with existing YAML parsing
 export type TileIdentity =
-  | { suit: string; rank: string } // Variable refs
+  | { suit: string; rank: string } // Will be normalized to TileSlot
   | { honor: 'dragon'; color: DragonColor }
   | { honor: 'wind'; direction: Wind }
   | { flower: FlowerNumber }
@@ -45,7 +64,7 @@ export type GroupKind = 'single' | 'pair' | 'pung' | 'kong' | 'quint';
 
 export interface Group {
   kind: GroupKind;
-  tile: TileIdentity;
+  tile: TileIdentity; // TODO: migrate to TileSlot after parser normalization
   joker_allowed: boolean;
   exposure_group?: string; // e.g., "A", "B" - groups that expose together
   distinct_identities?: boolean; // For flower pairs with different flowers
@@ -120,4 +139,5 @@ export interface Ruleset {
     cards_source: 'user_authored_only' | 'licensed_allowed';
     primary_language: string;
   };
+  tiles: InventorySpec; // Added per architect guidance
 }

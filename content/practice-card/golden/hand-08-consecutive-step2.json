@@ -1,0 +1,63 @@
+{
+  "hand_id": "hand-08-consecutive-step2",
+  "note": "Partial enumeration - showing pattern. Full set has 3 suits × 3 starting ranks (1,2,3 each +6 step-2) = 9 targets",
+  "targets": [
+    {
+      "binding": { "S": "crak", "R1": 1, "R2": 3, "R3": 5, "R4": 7 },
+      "tiles": [
+        { "suit": "crak", "rank": 1 },
+        { "suit": "crak", "rank": 1 },
+        { "suit": "crak", "rank": 3 },
+        { "suit": "crak", "rank": 3 },
+        { "suit": "crak", "rank": 5 },
+        { "suit": "crak", "rank": 5 },
+        { "suit": "crak", "rank": 7 },
+        { "suit": "crak", "rank": 7 },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "flower": 2 },
+        { "flower": 2 },
+        { "flower": 2 }
+      ]
+    },
+    {
+      "binding": { "S": "bam", "R1": 2, "R2": 4, "R3": 6, "R4": 8 },
+      "tiles": [
+        { "suit": "bam", "rank": 2 },
+        { "suit": "bam", "rank": 2 },
+        { "suit": "bam", "rank": 4 },
+        { "suit": "bam", "rank": 4 },
+        { "suit": "bam", "rank": 6 },
+        { "suit": "bam", "rank": 6 },
+        { "suit": "bam", "rank": 8 },
+        { "suit": "bam", "rank": 8 },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "flower": 2 },
+        { "flower": 2 },
+        { "flower": 2 }
+      ]
+    },
+    {
+      "binding": { "S": "dot", "R1": 3, "R2": 5, "R3": 7, "R4": 9 },
+      "tiles": [
+        { "suit": "dot", "rank": 3 },
+        { "suit": "dot", "rank": 3 },
+        { "suit": "dot", "rank": 5 },
+        { "suit": "dot", "rank": 5 },
+        { "suit": "dot", "rank": 7 },
+        { "suit": "dot", "rank": 7 },
+        { "suit": "dot", "rank": 9 },
+        { "suit": "dot", "rank": 9 },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "honor": "dragon", "color": "green" },
+        { "flower": 2 },
+        { "flower": 2 },
+        { "flower": 2 }
+      ]
+    }
+  ]
+}
