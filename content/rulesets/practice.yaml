@@ -35,7 +35,7 @@ flowers:
 
 # Wall Configuration
 wall:
-  size: 152  # Standard wall: 144 tiles + 8 flowers
+  size: 148  # Actual inventory: 108 suited + 24 honors + 8 flowers + 8 jokers = 148
   include_flowers: true  # Flowers shuffled into wall (matches pattern_elements treatment)
 
 # Game End Conditions

@@ -1,5 +1,5 @@
 # Hand 2: Single suit with even ranks
-# Coverage: single-suit, parity constraint, kong kind, equal(suits)
+# Coverage: single-suit, parity constraint, pung kind, equal(suits)
 
 id: hand-02-same-suit-evens
 name: "Single Suit - All Even Ranks"

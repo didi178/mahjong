@@ -22,7 +22,7 @@
     "validate": {
       "dependsOn": ["^build"],
       "cache": true,
-      "inputs": ["content/**/*.yaml", "src/**"]
+      "inputs": ["$TURBO_ROOT$/content/**/*.yaml", "src/**"]
     },
     "test:watch": {
       "cache": false,

@@ -6,4 +6,4 @@ Card definitions are YAML/JSON content files, not code.
 
 ## Status
 
-🚧 Content directory scaffolded - card definition in issue #2
+✅ Practice card defined with 10 hands covering pattern elements (singles, pairs, pungs, kongs, winds, dragons, flowers, jokers)
