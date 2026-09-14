@@ -51,8 +51,8 @@ export function fromCanonicalString(s: string): TileId {
 
   if (parts[0] === 'suit') {
     if (parts.length !== 3) throw new Error(`Invalid suit tile string: ${s}`);
-    const suit = parts[1];
-    const rank = parseInt(parts[2], 10);
+    const suit = parts[1]!;
+    const rank = parseInt(parts[2]!, 10);
     if (!['crak', 'bam', 'dot'].includes(suit)) {
       throw new Error(`Invalid suit: ${suit}`);
     }
@@ -64,7 +64,7 @@ export function fromCanonicalString(s: string): TileId {
 
   if (parts[0] === 'wind') {
     if (parts.length !== 2) throw new Error(`Invalid wind tile string: ${s}`);
-    const direction = parts[1];
+    const direction = parts[1]!;
     if (!['north', 'east', 'south', 'west'].includes(direction)) {
       throw new Error(`Invalid wind direction: ${direction}`);
     }
@@ -73,7 +73,7 @@ export function fromCanonicalString(s: string): TileId {
 
   if (parts[0] === 'dragon') {
     if (parts.length !== 2) throw new Error(`Invalid dragon tile string: ${s}`);
-    const color = parts[1];
+    const color = parts[1]!;
     if (!['red', 'green', 'white'].includes(color)) {
       throw new Error(`Invalid dragon color: ${color}`);
     }
@@ -82,7 +82,7 @@ export function fromCanonicalString(s: string): TileId {
 
   if (parts[0] === 'flower') {
     if (parts.length !== 2) throw new Error(`Invalid flower tile string: ${s}`);
-    const number = parseInt(parts[1], 10);
+    const number = parseInt(parts[1]!, 10);
     if (![1, 2, 3, 4].includes(number)) {
       throw new Error(`Invalid flower number: ${number}`);
     }
@@ -155,11 +155,12 @@ export function compare(a: TileId, b: TileId): number {
 
   // Within same kind, compare by specific fields
   switch (a.kind) {
-    case 'suit':
+    case 'suit': {
       if (b.kind !== 'suit') return 0; // Should never happen after kind check
       const suitDiff = SUIT_ORDER[a.suit] - SUIT_ORDER[b.suit];
       if (suitDiff !== 0) return suitDiff;
       return a.rank - b.rank;
+    }
 
     case 'wind':
       if (b.kind !== 'wind') return 0;

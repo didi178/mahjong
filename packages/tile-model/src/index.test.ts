@@ -380,7 +380,7 @@ describe('enumerateInventory', () => {
 
     // 4 of each rank 1-9
     for (let rank = 1; rank <= 9; rank++) {
-      expect(inventory.count({ kind: 'suit', suit: 'crak', rank: rank as any })).toBe(4);
+      expect(inventory.count({ kind: 'suit', suit: 'crak', rank: rank as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 })).toBe(4);
     }
   });
 
