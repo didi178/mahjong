@@ -19,7 +19,14 @@ describe('Ruleset Drift Tests', () => {
     const yaml = await readFile(rulesetPath, 'utf-8');
     const ruleset = parseRuleset(yaml);
 
-    const count = totalTileCount(ruleset.tiles);
+    // Adapt YAML structure (honors.dragons, honors.winds) to InventorySpec (flat)
+    const count = totalTileCount({
+      suits: ruleset.tiles.suits,
+      dragons: ruleset.tiles.honors.dragons,
+      winds: ruleset.tiles.honors.winds,
+      flowers: ruleset.tiles.flowers,
+      jokers: ruleset.tiles.jokers,
+    });
     expect(count).toBe(152);
   });
 });
