@@ -35,7 +35,7 @@ flowers:
 
 # Wall Configuration
 wall:
-  size: 148  # Actual inventory: 108 suited + 24 honors + 8 flowers + 8 jokers = 148
+  size: 152  # Actual inventory: 108 suited + 28 honors + 8 flowers + 8 jokers = 152
   include_flowers: true  # Flowers shuffled into wall (matches pattern_elements treatment)
 
 # Game End Conditions
@@ -84,5 +84,5 @@ tiles:
   jokers:
     count: 8  # 8 jokers (not distinguishable by identity)
 
-# Total tiles: 108 suited + 24 honors + 8 flowers + 8 jokers = 148
-# Some rulesets have 152 (with 4 white flowers), adjust as needed
+# Total tiles: 108 suited + 28 honors + 8 flowers + 8 jokers = 152
+# (Honors: 12 dragons + 16 winds = 28)
