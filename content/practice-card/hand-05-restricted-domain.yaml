@@ -1,0 +1,55 @@
+# Hand 5: Restricted rank domain
+# Coverage: in_set constraint, equal(ranks), three-suit
+
+id: hand-05-restricted-domain
+name: "Corners Only - 1, 5, 9"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  S3:
+    type: suit
+  R:
+    type: rank
+    values: [1, 5, 9]
+
+groups:
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S2
+      rank: R
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S3
+      rank: R
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      honor: dragon
+      color: white
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      flower: 3
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2, S3]
+
+  - type: in_set
+    var: R
+    values: [1, 5, 9]

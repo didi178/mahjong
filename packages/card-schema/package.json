@@ -17,12 +17,15 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
-    "clean": "rm -rf dist .turbo"
+    "clean": "rm -rf dist .turbo",
+    "validate": "node dist/cli-validate.js"
   },
   "dependencies": {
-    "@mahjong/tile-model": "workspace:*"
+    "@mahjong/tile-model": "workspace:*",
+    "yaml": "^2.5.1"
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "fast-check": "^3.23.1",
     "typescript": "^5.6.3",
     "vitest": "^2.1.2"

@@ -24,6 +24,11 @@ export default [
         HTMLElement: 'readonly',
         Element: 'readonly',
         Node: 'readonly',
+        // Node.js globals for CLI and test files
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
       },
     },
     plugins: {
@@ -79,6 +84,41 @@ export default [
       // General
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',
+    },
+  },
+  // Test files - linted without typed rules to avoid tsconfig project mismatch
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts'],
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: null, // Explicitly disable type-checking for tests
+      },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-console': 'off', // Allow console in tests
+      'prefer-const': 'error',
+    },
+  },
+  // CLI files - allow console.log
+  {
+    files: ['**/cli-*.ts', '**/cli-*.js'],
+    rules: {
+      'no-console': 'off',
     },
   },
   prettier,

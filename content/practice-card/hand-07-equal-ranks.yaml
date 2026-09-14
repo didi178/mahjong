@@ -1,0 +1,57 @@
+# Hand 7: Equal ranks across suits
+# Coverage: equal(ranks), three-suit, full 1-9 domain
+
+id: hand-07-equal-ranks
+name: "Same Rank - Three Suits"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  S3:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+
+groups:
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R1
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S2
+      rank: R2
+    joker_allowed: true
+
+  - kind: kong
+    tile:
+      suit: S3
+      rank: R3
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      honor: wind
+      direction: west
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      flower: 1
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2, S3]
+
+  - type: equal
+    vars: [R1, R2, R3]

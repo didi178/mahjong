@@ -16,6 +16,7 @@
     "test:watch": "turbo run test:watch",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
+    "validate": "turbo run validate",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "clean": "turbo run clean && rm -rf node_modules .turbo"

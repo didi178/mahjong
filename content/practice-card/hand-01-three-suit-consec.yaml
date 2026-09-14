@@ -1,0 +1,62 @@
+# Hand 1: Three-suit consecutive ranks
+# Coverage: three-suit, rank variables, distinct(suits), consecutive, pung kind, jokers, exposure_group
+
+id: hand-01-three-suit-consec
+name: "Three Suits - Consecutive Ranks"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  S3:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+
+groups:
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R1
+    joker_allowed: true
+    exposure_group: A
+
+  - kind: pung
+    tile:
+      suit: S2
+      rank: R2
+    joker_allowed: true
+    exposure_group: A
+
+  - kind: pung
+    tile:
+      suit: S3
+      rank: R3
+    joker_allowed: true
+    exposure_group: A
+
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R2
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      honor: dragon
+      color: red
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2, S3]
+
+  - type: consecutive
+    vars: [R1, R2, R3]
+    step: 1

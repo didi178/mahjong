@@ -1,0 +1,72 @@
+# Hand 10: Mixed complexity
+# Coverage: multiple constraint types together, all group kinds present
+
+id: hand-10-mixed-complexity
+name: "Mixed Patterns"
+concealed: false
+
+variables:
+  S1:
+    type: suit
+  S2:
+    type: suit
+  R1:
+    type: rank
+  R2:
+    type: rank
+  R3:
+    type: rank
+  R4:
+    type: rank
+
+groups:
+  - kind: kong
+    tile:
+      suit: S1
+      rank: R1
+    joker_allowed: true
+
+  - kind: pung
+    tile:
+      suit: S1
+      rank: R2
+    joker_allowed: true
+
+  - kind: pair
+    tile:
+      suit: S2
+      rank: R3
+    joker_allowed: false
+
+  - kind: single
+    tile:
+      suit: S2
+      rank: R4
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      honor: wind
+      direction: south
+    joker_allowed: false
+
+  - kind: pair
+    tile:
+      flower: 3
+    joker_allowed: false
+
+constraints:
+  - type: distinct
+    vars: [S1, S2]
+
+  - type: consecutive
+    vars: [R1, R2]
+    step: 1
+
+  - type: parity
+    vars: [R3, R4]
+    parity: odd
+
+  - type: offset
+    vars: [R3, R4]
+    delta: 2
